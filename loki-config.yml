@@ -1,0 +1,17 @@
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+  grpc_listen_port: 9095
+
+positions:
+  filename: /tmp/loki-positions.yaml
+
+scrape_configs:
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['localhost']
+        labels:
+          job: 'docker'
+          __path__: /var/log/containers/*.log
+
